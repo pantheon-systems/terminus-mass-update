@@ -34,22 +34,31 @@ class ApplyCommand extends MassUpdateCommandBase
             $updates = $info['updates'];
 
             $env = $site->getEnvironments()->get('dev');
-            $logname = $options['dry-run'] ? 'DRY RUN' : 'notice';
-            $this->log()->notice(
-                'Applying {updates} updates to {site}',
-                ['site' => $site->getName(), 'updates' => count($updates), 'name' => $logname]);
 
-            // Do the actual updates if we're not in dry-run mode
-            if (!$options['dry-run']) {
-                // @TODO: We may be able to run workflows asynchronously to save time.
-                $workflow = $env->applyUpstreamUpdates(
-                    isset($options['updatedb']) ? $options['updatedb'] : false,
-                    isset($options['accept-upstream']) ? $options['accept-upstream'] : false
+            if ($env->get('connection_mode') !== 'git') {
+                $this->log()->warning(
+                    'Cannot apply updates to {site} because the dev environment is not in git mode.',
+                    ['site' => $site->getName()]
                 );
-                while (!$workflow->checkProgress()) {
-                    // @TODO: Add Symfony progress bar to indicate that something is happening.
+            }
+            else {
+                $logname = $options['dry-run'] ? 'DRY RUN' : 'notice';
+                $this->log()->notice(
+                    'Applying {updates} updates to {site}',
+                    ['site' => $site->getName(), 'updates' => count($updates), 'name' => $logname]);
+
+                // Do the actual updates if we're not in dry-run mode
+                if (!$options['dry-run']) {
+                    // @TODO: We may be able to run workflows asynchronously to save time.
+                    $workflow = $env->applyUpstreamUpdates(
+                        isset($options['updatedb']) ? $options['updatedb'] : false,
+                        isset($options['accept-upstream']) ? $options['accept-upstream'] : false
+                    );
+                    while (!$workflow->checkProgress()) {
+                        // @TODO: Add Symfony progress bar to indicate that something is happening.
+                    }
+                    $this->log()->notice($workflow->getMessage());
                 }
-                $this->log()->notice($workflow->getMessage());
             }
         }
     }

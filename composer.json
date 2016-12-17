@@ -4,7 +4,7 @@
     "type": "terminus-plugin",
     "license": "MIT",
     "autoload": {
-        "psr-4": { "Pantheon\\TerminusMassUpdate": "src" }
+        "psr-4": { "Pantheon\\TerminusMassUpdate\\": "src" }
     },
     "extra": {
         "terminus": {
