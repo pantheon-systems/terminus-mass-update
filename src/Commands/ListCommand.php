@@ -25,7 +25,7 @@ class ListCommand extends MassUpdateCommandBase
      *   author: Author
      * @param array $options
      * @return RowsOfFields
-`
+     * 
      * @throws \Pantheon\Terminus\Exceptions\TerminusException
      * @option upstream Update only sites using the given upstream
      */
