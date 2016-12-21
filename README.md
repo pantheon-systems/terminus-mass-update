@@ -47,5 +47,5 @@ curl https://github.com/pantheon-systems/terminus-mass-update/archive/1.x.tar.gz
 ```
 
 ## Help
-Run `terminus help auth:hello` for help.
+Run `terminus help sites:mass-update:list` or `terminus help sites:mass-update:apply` for help.
 

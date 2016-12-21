@@ -19,7 +19,7 @@ class ApplyCommand extends MassUpdateCommandBase
      *
      * @param array $options
      * @return RowsOfFields
-    `
+     * 
      * @throws \Pantheon\Terminus\Exceptions\TerminusException
      * @option upstream Update only sites using the given upstream
      * @option boolean $updatedb Run update.php after updating (Drupal only)
