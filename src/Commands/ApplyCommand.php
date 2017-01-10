@@ -7,7 +7,7 @@ require_once "MassUpdateCommandBase.php";
 
 class ApplyCommand extends MassUpdateCommandBase
 {
-    protected $command = 'sites:mass-update:apply';
+    protected $command = 'site:mass-update:apply';
 
     /**
      * Apply all available upstream updates to all sites.

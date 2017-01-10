@@ -9,7 +9,7 @@ use Consolidation\OutputFormatters\StructuredData\RowsOfFields;
 
 class ListCommand extends MassUpdateCommandBase
 {
-    protected $command = 'sites:mass-update:list';
+    protected $command = 'site:mass-update:list';
 
     /**
      * List all available upstream updates from all sites.

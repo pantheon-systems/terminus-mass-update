@@ -13,8 +13,8 @@ Apply the available upstream updates for each of the sites specified.
 To specify the list of sites to apply updates to you must send them to this function on stdin using a pipe. This allows you to use any other Terminus command to generate the list of sites to work on:
 
 ```
-$ terminus site:list --format=list | terminus sites:mass-update:apply
-$ terminus org:site:list --format=list | terminus sites:mass-update:apply
+$ terminus site:list --format=list | terminus site:mass-update:apply
+$ terminus org:site:list --format=list | terminus site:mass-update:apply
 ```
 
 By adding `--format=list` to a Terminus command you will get a list of site IDs suitable for input into this command.
@@ -33,8 +33,8 @@ List the available upstream updates for each of the sites specified.
 Input for this function works the same way as the `apply` command. This command can be used to discover exactly which update would be applied by `apply`
 
 ```
-$ terminus site:list --format=list | terminus sites:mass-update:list
-$ terminus org:site:list --format=list | terminus sites:mass-update:list
+$ terminus site:list --format=list | terminus site:mass-update:list
+$ terminus org:site:list --format=list | terminus site:mass-update:list
 ```
 
 ## Installation
@@ -47,5 +47,5 @@ curl https://github.com/pantheon-systems/terminus-mass-update/archive/1.x.tar.gz
 ```
 
 ## Help
-Run `terminus help sites:mass-update:list` or `terminus help sites:mass-update:apply` for help.
+Run `terminus help site:mass-update:list` or `terminus help site:mass-update:apply` for help.
 
