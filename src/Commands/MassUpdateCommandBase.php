@@ -64,12 +64,15 @@ class MassUpdateCommandBase extends UpdatesCommand
      * Get the list of updates for all of the sites passed in.
      *
      * @param $sites
-     * @return array | An array containing a list of sites which need updates (index 0) and the updates themselves (1)
+     * @param string $env_id
+     * @return array
+     *  An array containing a list of sites which need updates (index 0) and the updates themselves (1)
      */
-    protected function getAllUpdates($sites) {
+    protected function getAllUpdates($sites, $env_id = 'dev') {
         $out = [];
         foreach ($sites as $site) {
-            foreach ($this->getUpstreamUpdatesLog($site) as $commit) {
+            $env = $site->getEnvironments()->get($env_id);
+            foreach ($this->getUpstreamUpdatesLog($env) as $commit) {
                 $out[$site->id]['updates'][] = [
                     'site' => $site->getName(),
                     'datetime' => $commit->datetime,
