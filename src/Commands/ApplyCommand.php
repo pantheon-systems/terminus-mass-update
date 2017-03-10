@@ -69,12 +69,13 @@ class ApplyCommand extends MassUpdateCommandBase
         }
     }
 
-    /**
-     * @param $options
-     * @param $site
-     * @param $updates
-     * @param $env
-     */
+  /**
+   * @param $options
+   * @param $site
+   * @param $updates
+   * @param $env
+   * @throws \Pantheon\Terminus\Exceptions\TerminusException
+   */
     protected function applyUpdates($options, $site, $updates, $env)
     {
         $logname = $options['dry-run'] ? 'DRY RUN' : 'notice';
