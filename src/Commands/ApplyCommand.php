@@ -26,7 +26,7 @@ class ApplyCommand extends MassUpdateCommandBase
      * @option boolean $accept-upstream Attempt to automatically resolve conflicts in favor of the upstream
      * @option dry-run Don't actually apply the updates
      */
-    public function applyAllUpdates($options = ['upstream' => '', 'updatedb' => false, 'accept-upstream' => false, 'dry-run' => false])
+    public function applyAllUpdates($options = ['upstream' => '', 'updatedb' => false, 'accept-upstream' => false, 'dry-run' => false, 'force-git-mode' => false])
     {
         $site_updates = $this->getAllSitesAndUpdates($options);
         foreach ($site_updates as $info) {
@@ -36,10 +36,27 @@ class ApplyCommand extends MassUpdateCommandBase
             $env = $site->getEnvironments()->get('dev');
 
             if ($env->get('connection_mode') !== 'git') {
-                $this->log()->warning(
-                    'Cannot apply updates to {site} because the dev environment is not in git mode.',
-                    ['site' => $site->getName()]
-                );
+                if ($options['force-git-mode'])
+                {
+                    $workflow = $env->changeConnectionMode('git');
+                    if(is_string($workflow))
+                    {
+                        $this->log()->notice($workflow);
+                    }
+                    else
+                    {
+                        while(!$workflow->checkProgress())
+                        {
+                        }
+                        $this->log()->notice($workflow->getMessage());
+                    }
+                }
+                else {
+                    $this->log()->warning(
+                        'Cannot apply updates to {site} because the dev environment is not in git mode.',
+                        ['site' => $site->getName()]
+                    );
+                }
             }
             else {
                 $logname = $options['dry-run'] ? 'DRY RUN' : 'notice';
