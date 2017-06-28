@@ -19,6 +19,8 @@ $ terminus org:site:list --format=list | terminus sites:mass-update:apply
 
 By adding `--format=list` to a Terminus command you will get a list of site IDs suitable for input into this command.
 
+When working with organizations it can be useful to filter `org:site:list` by tags as well. One strategy is to create a `mass-update` tag in order to apply mass updates to specific sites within an organization using `terminus org:site:list --tag="mass-update" --format=list | terminus sites:mass-update:apply`.
+
 The mass-update command has some other options:
 
 - `--dry-run`: Show what updates would be applied but do not apply them.
