@@ -93,7 +93,7 @@ class MassUpdateCommandBase extends UpdatesCommand
     protected function readSitesFromStdin() {
         // If STDIN is interactive then nothing was piped to the command. We don't want to hang forever waiting
         // for input as this is not meant to be interactive.
-        if (posix_isatty(STDIN)) {
+        if (function_exists('posix_isatty') && posix_isatty(STDIN)) {
             return [];
         }
         $sites = [];
