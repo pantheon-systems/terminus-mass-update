@@ -37,6 +37,10 @@ $ terminus site:list --format=list | terminus site:mass-update:list
 $ terminus org:site:list --format=list | terminus site:mass-update:list
 ```
 
+### Backups
+
+Before updating, it's recommended to create backups. See the [Terminus Backup All Plugin](https://github.com/terminus-plugin-project/terminus-backup-all-plugin).
+
 ## Installation
 To install this plugin place it in `~/.terminus/plugins/`.
 
