@@ -51,3 +51,12 @@ curl https://github.com/pantheon-systems/terminus-mass-update/archive/1.x.tar.gz
 ## Help
 Run `terminus help site:mass-update:list` or `terminus help site:mass-update:apply` for help.
 
+
+## Rollback
+
+- **When:** a released version of this plugin is broken for users or CI (for example `terminus site:mass-update:apply` fails after an update).
+- **Recover:** releases are fixed forward. Revert the bad change on `1.x` through a PR and tag the next patch release; never delete or move a published tag. Users who can't wait pin the previous version with Composer.
+- **Verify:** Packagist (`https://repo.packagist.org/p2/pantheon-systems/terminus-mass-update.json`) lists the new patch first, and `terminus self:plugin:update` picks it up.
+- **Who to page:** `#ask-hosting` (owner: developer-experience). Nobody is paged automatically.
+
+Full procedure: [DEPLOYMENT.md](DEPLOYMENT.md#rollback).
