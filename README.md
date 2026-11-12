@@ -27,6 +27,8 @@ The mass-update command has some other options:
 - `--updatedb`: Run update.php after updating (Drupal only)
 - `--accept-upstream`: Attempt to automatically resolve conflicts in favor of the upstream
 - `--upstream=<upstream id>`: Update only sites using the given upstream
+- `--force-git-mode`: Force Git mode on the environment
+- `--continue-on-failure`: Don't exit if a site update fails
 
 ### terminus site:mass-update:list
 
