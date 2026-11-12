@@ -39,7 +39,7 @@ class MassUpdateCommandBase extends UpdatesCommand
         $sites = $this->readSitesFromSTDIN();
         if (empty($sites)) {
             throw new TerminusException(
-                'Input a list of sites by piping it to this command. Try running "terminus site:list | terminus {cmd}".',
+                'Input a list of sites by piping it to this command. Try running "terminus site:list --format=list | terminus {cmd}".',
                 ['cmd' => $this->command]
             );
         }
